@@ -1,4 +1,4 @@
-# TODO: order imports
+# TODO: PEP8 cleanup
 import wifimgr
 import network
 from usyslog import UDPClient, SyslogClient
@@ -16,6 +16,7 @@ from wiegand import Wiegand
 import urequests as requests
 import utime as time
 
+# TODO: move these settings to a config file
 #The AD group the member must be part of for access to be granted
 
 AD_Group="3D Printer Basics"
@@ -23,6 +24,7 @@ syslog_server = '54.161.59.61' #'logs.evanlott.com'
 syslog_port = 514
 
 #oled init
+# TODO: move OLED settings to config file; add enable/disable
 i2c = I2C(-1, scl=Pin(5), sda=Pin(4))
 reset_pin = 16
 oled_width = 128
@@ -34,6 +36,7 @@ oled.text(str('Connecting...'), 0, 0)
 oled.show()
 
 # configure the wifis
+# TODO: add extended configurations to temporary Setup wifi page
 wlan = wifimgr.get_connection()
 if wlan is None:
     print("Could not initialize the network connection.")
@@ -54,7 +57,7 @@ else:
     oled.show()
     sleep(2)
 
-
+# TODO: Create variable for cabinet name, move to config file
 
 logger = UDPClient(ip=syslog_server, port=syslog_port)
     
@@ -64,6 +67,7 @@ logger.log(5,"3DFabCab: Cabinet lock access group: " + AD_Group)
 print(AD_Group)
 
 def has_access(rfid,AD_Group):
+    # TODO: Move lookup API URL to config file
     url="http://192.168.200.32:8080/api/v1/lookupByRfid"
     headers = {'cache-control':"no-cache",'content-type': "application/x-www-form-urlencoded",}
     payload = 'rfid=' + str(rfid) 
@@ -76,6 +80,7 @@ def has_access(rfid,AD_Group):
         return False
 
 def open_lock():
+    # TODO: move pin # to config file
     pin = Pin(15, machine.Pin.OUT)
     pin.on()
     sleep(2)
@@ -83,7 +88,8 @@ def open_lock():
 
 
 def wiegand26_decode(facility_code, card):
-    #wiegand library returns separate facility code and card number in decimal format.  To get the number printed on the card, we need to convert both to binary, concatenate, then convert back to decimal.
+    #wiegand library returns separate facility code and card number in decimal format.  
+    #To get the number printed on the card, we need to convert both to binary, concatenate, then convert back to decimal.
     facility_code_bin="{0:b}".format(facility_code)                                                                                                                            
     card_bin="{0:b}".format(card)                                                                                                                                                                                                                                                  
     return int(facility_code_bin+card_bin,2)  
