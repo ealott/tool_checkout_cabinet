@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name AOD4184A)(type Legacy)(uri "${KIPRJMOD}/KiCAD Libraries/AOD4184A/AOD4184A.lib")(options "")(descr ""))
+)
