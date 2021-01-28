@@ -1,6 +1,5 @@
 (fp_lib_table
+  (lib (name esp32_devkit_v1_doit)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/esp32_devkit_v1_doit/footprints/esp32_devkit_v1_doit.pretty")(options "")(descr ""))
   (lib (name AOD4184A)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/AOD4184A")(options "")(descr ""))
-  (lib (name ESP32-DEVKITC-32D)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/ESP32-DEVKITC-32D")(options "")(descr ""))
-  (lib (name Charleslabs_Parts)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/mini360_dcdc/Charleslabs_Parts.pretty")(options "")(descr ""))
-  (lib (name sparkfun)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/sparkfun")(options "")(descr ""))
+  (lib (name SamacSys_Parts)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/SamacSys_Parts.3dshapes")(options "")(descr ""))
 )

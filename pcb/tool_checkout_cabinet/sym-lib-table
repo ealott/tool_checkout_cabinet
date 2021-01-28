@@ -1,3 +1,5 @@
 (sym_lib_table
   (lib (name AOD4184A)(type Legacy)(uri "${KIPRJMOD}/KiCAD Libraries/AOD4184A/AOD4184A.lib")(options "")(descr ""))
+  (lib (name SamacSys_Parts)(type Legacy)(uri "${KIPRJMOD}/KiCAD Libraries/SamacSys_Parts.lib")(options "")(descr ""))
+  (lib (name esp32_devkit_v1_doit)(type Legacy)(uri "${KIPRJMOD}/KiCAD Libraries/esp32_devkit_v1_doit/symbols/esp32_devkit_v1_doit.lib")(options "")(descr ""))
 )

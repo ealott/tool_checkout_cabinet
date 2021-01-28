@@ -1,0 +1,21 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NE555DR
+D Single Precision Timer
+K
+F http://www.ti.com/lit/ds/symlink/ne555.pdf
+$ENDCMP
+#
+$CMP V8PAM10S-M3_H
+D Schottky Diodes & Rectifiers 8A 100V
+K
+F https://www.vishay.com/docs/87013/v8pam10s.pdf
+$ENDCMP
+#
+$CMP 1711725
+D PCB terminal block, nominal current: 24 A, rated voltage (III/2): 400 V, nominal cross section: 2.5 mm, pitch: 5.08 mm, number of positions: 2, connection method: Screw connection with tension sleeve, mounting: Wave soldering, conductor/PCB connection direction: 0 , color: green, Pin layout: Linear pinning, Solder pin [P]: 5 mm.
+K
+F https://www.phoenixcontact.com/online/portal/gb?uri=pxc-oc-itemdetail:pid=1711725&library=gben&tab=1
+$ENDCMP
+#
+#End Doc Library

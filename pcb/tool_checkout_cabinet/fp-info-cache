@@ -1,4 +1,4 @@
-18650599810554156
+18633236343891549
 AOD4184A
 DPAK228P994X240-4N
 
@@ -6146,34 +6146,6 @@ capacitor tantalum
 2
 2
 Charleslabs_Parts
-ADC1115_ADC_Module
-
-
-0
-10
-10
-Charleslabs_Parts
-Arduino_Pro_Mini_China
-
-
-0
-29
-29
-Charleslabs_Parts
-BMP280_Module
-
-
-0
-6
-6
-Charleslabs_Parts
-HM-11_Module
-Chinese HM-11 Bluetooth Low Energy module
-
-0
-16
-16
-Charleslabs_Parts
 LogicLevelConverter_Module
 
 
@@ -6181,42 +6153,7 @@ LogicLevelConverter_Module
 12
 12
 Charleslabs_Parts
-MPU6050_Module
-
-
-0
-8
-8
-Charleslabs_Parts
-MQ-X_Gas_Sensor
-MQ-X Gas Sensor
-MQ-2 MQ-3 MQ-4 MQ-5 MQ-6 MQ-7 MQ-8 MQ-135
-0
-6
-6
-Charleslabs_Parts
 Mini360_Module
-
-
-0
-4
-4
-Charleslabs_Parts
-RV097
-
-
-0
-5
-5
-Charleslabs_Parts
-SD_Card_Module
-
-
-0
-6
-6
-Charleslabs_Parts
-SX1308_Boost_Module
 
 
 0
@@ -50707,13 +50644,6 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 0
 10
 10
-ESP32-DEVKITC-32D
-MODULE_ESP32-DEVKITC-32D
-
-
-0
-38
-38
 Ferrite_THT
 LairdTech_28C0236-0JW-10
 Ferrite, vertical, LairdTech 28C0236-0JW-10, https://assets.lairdtech.com/home/brandworld/files/28C0236-0JW-10.pdf, JW Miller core https://www.bourns.com/products/magnetic-products/j.w.-miller-through-hole-ferrite-beads-emi-filters
@@ -82130,17 +82060,10 @@ varistor SIOV
 0
 2
 2
-sparkfun
-SPARKFUN_LOGIC_LEVEL_CONVERTER
-SPARKFUN LOGIC LEVEL CONVERTER
-SPARKFUN LOGIC LEVEL CONVERTER
-0
-12
-12
-sparkfun
-SPARKFUN_LOGIC_LEVEL_CONVERTER_LOCK
-
+esp32_devkit_v1_doit
+esp32_devkit_v1_doit
+ESPWROOM32, ESP32, 30 GPIOs version
 
 0
-12
-12
+30
+30
