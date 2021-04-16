@@ -1,0 +1,13 @@
+[Unit]
+Description=AD Caching Service for RFID Door Cabinets
+
+[Service]
+WorkingDirectory=/usr/local/lib/adcache/
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/usr/local/etc/adcache/adcache.env
+ExecStart=/usr/local/lib/adcache/venv/bin/python3 /usr/local/lib/adcache/adcache.py
+
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
