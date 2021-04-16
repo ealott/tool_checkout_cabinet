@@ -23,7 +23,7 @@ install: $(service_dir) adcache.service
 	chown root:root $(conf_dir)/*
 	chmod 644 $(conf_dir)/*
 
-	@echo Creating python virtual environment and isntalling packages...
+	@echo Creating python virtual environment and installing packages...
 	python3 -m venv $(venv)
 	$(venv)/bin/pip3 install -r requirements.txt
 
