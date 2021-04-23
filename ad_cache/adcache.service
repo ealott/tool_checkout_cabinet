@@ -1,5 +1,6 @@
 [Unit]
 Description=AD Caching Service for RFID Door Cabinets
+After=network-online.target
 
 [Service]
 WorkingDirectory=/usr/local/lib/adcache/
