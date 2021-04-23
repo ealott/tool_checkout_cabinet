@@ -6,6 +6,7 @@ service_dir=/etc/systemd/system
 venv=$(lib_dir)/venv
 
 install: $(service_dir) adcache.service
+	@echo Intended to be installed on Debian.  You might need to manually install the python3-ldap package otherwise.
 	@echo Installing the service files...
 	cp adcache.service $(service_dir)
 	chown root:root $(service_dir)/adcache.service
@@ -26,6 +27,7 @@ install: $(service_dir) adcache.service
 	@echo Creating python virtual environment and installing packages...
 	python3 -m venv $(venv)
 	$(venv)/bin/pip3 install -r requirements.txt
+	apt-get install python3-ldap
 
 	@echo Installation complete...
 	@echo run 'systemctl start adcache' to start service
