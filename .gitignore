@@ -1,0 +1,7 @@
+firmware/wifi.dat
+pcb/tool_checkout_cabinet/old/gerb2/
+pcb/tool_checkout_cabinet/old/gerb/
+*.gcode
+firmware/old/
+ad_cache/.env
+ad_cache/app.log
