@@ -1,15 +1,21 @@
 # TODO: PEP8 cleanup
+import wifimgr
 import network
+from utime import sleep
 from usyslog import UDPClient, SyslogClient
 from machine import Pin, Timer
-import wifimgr 
 
-from wiegand import Wiegand #for reading 125khz RFID tags with the Wiegand protocol
+#for RFID reading
+from wiegand import Wiegand
 
-#For querying AD REST API
+
+#For querying API
 import urequests as requests
 
+# TODO: Implement the watchdog timer
 # TODO: move these settings to a config file
+
+
 #The AD group the member must be part of for access to be granted
 
 AD_Group="3D Printer Basics"
@@ -18,7 +24,7 @@ syslog_port = 514
 
 
 # configure the wifis
-# TODO: add extended configurations (syslog_server, AD_Group, etc.) to temporary Setup wifi page
+# TODO: add extended configurations to temporary Setup wifi page
 wlan = wifimgr.get_connection()
 if wlan is None:
     print("Could not initialize the network connection.")
@@ -31,8 +37,7 @@ else:
 # TODO: Create variable for cabinet name, move to config file
 
 logger = UDPClient(ip=syslog_server, port=syslog_port)
-
-# TODO: Add cabinet name to settings, use name in logging     
+    
 logger.log(5,"3DFabCab: Cabinet lock online at: " + nic.ifconfig()[0])
 logger.log(5,"3DFabCab: Cabinet lock access group: " + AD_Group)
 
@@ -52,23 +57,24 @@ def has_access(rfid,AD_Group):
         return False
 
 def open_lock():
-    # TODO: move pin # and lock open period to to config file
+    # TODO: move pin # to config file
     pin = Pin(4, Pin.OUT)
     
-    # Start a 2 second hardware timer to disable the solenoid (which causes the lock to latch again).  
-    # Engaging the lock for more than a few minutes will literally melt it.
-    relock_timer = Timer(0)
-    relock_timer.init(period=2000, mode=Timer.ONE_SHOT, callback=lambda t:pin.off())
+    #Start a 2 second timer to shutoff the lock.  Engaging the lock for more than a few minutes will melt it.
+    tim0 = Timer(0)
+    tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:pin.off())
 
     pin.on()
 
 def get_lock_status():
-    # returns 1 when lock is unlatched, 0 when latched
-    #TODO: move pin number to config file
-    #TODO: setup interrupt handler to print and log when door lock status changes
+    #returns 1 when lock is unlatched, 0 when latched
     pin = Pin(32, Pin.IN, Pin.PULL_UP)
-
-
+    status = pin.value()
+    if(status==1):
+        return str(status) + ' unlatched'
+    else:
+        return str(status) + ' latched'
+    
 #Should produce 11094651804
 def wiegand26_decode(facility_code, card):
     #wiegand library returns separate facility code and card number in decimal format.  
@@ -86,9 +92,13 @@ def on_card(card_number, facility_code, cards_read):
     print("Checking access API...")
     try:
         if has_access(decoded_rfid, AD_Group):
+            print("Lock status: " + get_lock_status())            
             print("Access Granted to " + AD_Group)
             logger.log(5,"3DFabCab: Access Granted")
             open_lock()
+            tim0 = Timer(3)
+            tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print("Lock status: " + get_lock_status()))
+            
 
 
         else:
@@ -103,7 +113,8 @@ def on_card(card_number, facility_code, cards_read):
 
 
 def main():
-    #Make sure the pin driving the solenoid's transistor is off:
+    #Make sure the pin driving the solenoid's transistor is off
+    #the solenoid will melt if left on for more than a minute or two:
     pin = Pin(4, Pin.OUT)
     pin.off()
 
@@ -115,4 +126,5 @@ def main():
 
     
 main()
+
 
