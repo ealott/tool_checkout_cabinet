@@ -93,19 +93,20 @@ def has_access(rfid,AD_Group):
         #print("Access Denied")
         return False
 
-def has_access_cached(rfid,AD_Group):
+def has_access_cached(rfid):
     global member_cache
-    print(rfid)
-    print(type(rfid))
+    #print(rfid)
+    #print(type(rfid))
     if int(rfid) > 16777215:
         print('40-bit ID detected')
         h=hex(int(rfid))
         h_trunc=h[4:]
         rfid=int(h_trunc,16)
+        print('40-bit ID converted to: ' + str(rfid))
     # TODO: Pass ADGroup into URL parameter
     # TODO: Move base URL and headers to config file
 
-    if str(rfid) in member_cache:
+    if str(rfid) in member_cache[0]:
         #print("Access Granted; opening.").
         return True
     else:
@@ -118,7 +119,7 @@ def open_lock():
     
     #Start a 2 second timer to shutoff the lock.  Engaging the lock for more than a few minutes will melt it.
     tim0 = Timer(0)
-    tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:pin.off())
+    tim0.init(period=2000, mode=Timer.ONE_SHOT, callback=lambda t:pin.off())
 
     pin.on()
 
@@ -152,13 +153,13 @@ def on_card(card_number, facility_code, cards_read):
 
     print("Checking access API...")
     try:
-        if has_access_cached(decoded_rfid, AD_Group):
-            print("Lock status: " + get_lock_status())            
+        if has_access_cached(decoded_rfid):
+            #print("Lock status: " + get_lock_status())            
             print("Access Granted to " + AD_Group)
             logger.log(5,"3DFabCab: Access Granted")
             open_lock()
-            tim0 = Timer(3)
-            tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print("Lock status: " + get_lock_status()))
+            #tim0 = Timer(3)
+            #tim0.init(period=2000, mode=Timer.ONE_SHOT, callback=lambda t:print("Lock status: " + get_lock_status()))
 
         else:
             print("Access Denied to " + AD_Group)
@@ -169,6 +170,9 @@ def on_card(card_number, facility_code, cards_read):
         f = open('error.txt', 'w')
         f.write(str(E))
         f.close()
+    
+    
+
 
 # TODO: get interrupt working for latch switch
 #def _on_pin(newstate):  
@@ -194,7 +198,6 @@ def main():
     #pin32 = Pin(32, Pin.IN)
     #pin32.irq(trigger=Pin.IRQ_FALLING, handler=_on_pin32)
 
-    
 main()
 
 
