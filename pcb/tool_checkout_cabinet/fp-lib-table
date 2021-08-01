@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name esp32_devkit_v1_doit)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/esp32_devkit_v1_doit/footprints/esp32_devkit_v1_doit.pretty")(options "")(descr ""))
+  (lib (name AOD4184A)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/AOD4184A")(options "")(descr ""))
+  (lib (name SamacSys_Parts)(type KiCad)(uri "${KIPRJMOD}/KiCAD Libraries/SamacSys_Parts.3dshapes")(options "")(descr ""))
+)
