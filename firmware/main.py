@@ -19,7 +19,7 @@ import prequests as requests
 #The AD group the member must be part of for access to be granted
 
 AD_Group="3D Printer Basics"
-syslog_server = '54.161.59.61' #'logs.evanlott.com'
+syslog_server = '3.221.114.54' #'logs.evanlott.com'
 syslog_port = 514
 
 member_cache = []
@@ -140,8 +140,13 @@ def get_lock_status():
     #return int(facility_code_bin+card_bin,2)
     
 def decode_raw_rfid_to_10D(raw_rfid):
-    mask = 0b00111111111111111111111110
+    mask = 0b11111111111111111111111
+    #shifted_rfid = raw_rfid >> 1 //this shifting is already done by the wiegand.py module
     decoded_rfid = raw_rfid & mask
+    print('In decode function.')
+    print( 'raw card num: ' + str(raw_rfid))
+    #print( 'shifted: ' + str(shifted_rfid))
+    print( 'shifted & masked : ' + str(decoded_rfid))
     return decoded_rfid
 
 def on_card(card_number, facility_code, cards_read):
@@ -199,5 +204,4 @@ def main():
     #pin32.irq(trigger=Pin.IRQ_FALLING, handler=_on_pin32)
 
 main()
-
 
